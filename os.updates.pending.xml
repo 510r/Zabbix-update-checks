@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2022-08-08T21:14:47Z</date>
+    <groups>
+        <group>
+            <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>79161d82e85a44cca251a33dc357f578</uuid>
+            <template>os.updates.pending</template>
+            <name>os.updates.pending</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>0df0ad9c2ab64167b4a0f00ffdfaecc3</uuid>
+                    <name>Updates</name>
+                    <key>os.updates.pending</key>
+                    <delay>900</delay>
+                    <triggers>
+                        <trigger>
+                            <uuid>39efdc4f7ea34f0398459435235ba350</uuid>
+                            <expression>last(/os.updates.pending/os.updates.pending)&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} updates on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
