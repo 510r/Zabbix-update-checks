@@ -8,22 +8,22 @@ CentOs
 Zabbix installation
 
 ##
-add repo:
+--add repo:
 
 rpm -Uvh https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-2.el7.noarch.rpm
 
 ##
-install:
+--install:
 
 yum install zabbix-agent zabbix-sender
 
 ##
-edit conf file
+--edit conf file
 
 vi /etc/zabbix/zabbix_agentd.conf
 
 ##
-add line to .conf, under User-defined parameters
+--add line to .conf, under User-defined parameters
 
 UserParameter=os.updates.pending,cat "/run/zabbix/zabbix.count.updates"
 
@@ -31,45 +31,46 @@ UserParameter=os.updates.pending,cat "/run/zabbix/zabbix.count.updates"
 create folder /opt/zabbix_scripts
 
 ##
-install wget
+--install wget
 
 yum install wget
 
 ##
-download script to created folder 
+--download script to created folder 
 
 wget https://github.com/510r/Zabbix-update-checks/raw/main/check_updates.sh
 
 ##
-create a script to run daily
+--create a script to run daily
 
 cat /etc/cron.daily/zabbix_check_pending_updates
 
 #!/bin/sh
 bash "/opt/zabbix_scripts/check_updates.sh"
 
-mark it as executable
+--mark it as executable
 
 chmod +x /etc/cron.daily/zabbix_check_pending_updates
 
 ##
-check the script working
+--check the script working
 
 sh /opt/zabbix_scripts/check_updates.sh
+
 zabbix_agentd -p | grep os.updates.pending   
 
 ##
-reconfig selinux if needed
+--reconfig selinux if needed
 
 ##
-reload zabbix agent
+--reload zabbix agent
 
 systemctl restart zabbix-agent
 
 ##
-zabbix not connecting
+--zabbix not connecting
 
 systemctl stop firewalld.service
 
 ##
-import simple template
+--import simple template
