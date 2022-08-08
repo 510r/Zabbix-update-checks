@@ -1,8 +1,11 @@
 thanks to https://medium.com/caendra-tech/monitoring-system-updates-with-zabbix-7a888510a457
 
-Checking updates for on CentOs
+Monitoring pending server updates with Zabbix
 
-zabbix installation
+
+CentOs
+
+Zabbix installation
 
 ##
 add repo:
