@@ -1,4 +1,6 @@
+thanks to https://medium.com/caendra-tech/monitoring-system-updates-with-zabbix-7a888510a457
 
+Checking updates for on CentOs
 
 zabbix installation
 
@@ -33,7 +35,7 @@ yum install wget
 ##
 download script to created folder 
 
-wget https://bitbucket.org/elearnsecurity/zabbix_count_updates/raw/48f3dfa174acda06a198151d8f408d36a68332b8/check_updates.sh
+wget https://github.com/510r/Zabbix-update-checks/raw/main/check_updates.sh
 
 ##
 create a script to run daily
@@ -68,16 +70,3 @@ systemctl stop firewalld.service
 
 ##
 import simple template
-
-
-
-
-
-
-
-
-
-
-
-
-
