@@ -10,9 +10,6 @@ epoch=$(date "+%s")
 tmpfile=$( mktemp --tmpdir=/run/zabbix )    
 outfile="/run/zabbix/zabbix.count.updates"
 
-    fi
-}
-
 function _check_last_update {
     if [[ ! -e $timestamp_file ]]; then 
         export update_needed=y
