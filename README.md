@@ -38,7 +38,7 @@ yum install wget
 ##
 --download script to created folder 
 
-wget https://github.com/510r/Zabbix-update-checks/raw/main/check_updates.sh
+wget "appropriate version .sh"
 
 ##
 --create a script to run daily
@@ -68,9 +68,9 @@ zabbix_agentd -p | grep os.updates.pending
 systemctl restart zabbix-agent
 
 ##
---zabbix not connecting
+!!! --zabbix not connecting
 
-systemctl stop firewalld.service
+!!! systemctl stop firewalld.service
 
 ##
 --import simple template
