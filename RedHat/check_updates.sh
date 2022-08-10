@@ -7,18 +7,18 @@ update_interval="86400" # 1 day
 timestamp_file_mtime="0"
 os="centos"
 epoch=$(date "+%s")
-tmpfile=$( mktemp --tmpdir=/run/zabbix )    
+tmpfile=$( mktemp --tmpdir=/run/zabbix )
 outfile="/run/zabbix/zabbix.count.updates"
 
 function _check_last_update {
-    if [[ ! -e $timestamp_file ]]; then 
+    if [[ ! -e $timestamp_file ]]; then
         export update_needed=y
         touch $timestamp_file
     else
         timestamp_file_mtime=$(stat -c %Y $timestamp_file )
     fi
 
-    if [[ "$((epoch-timestamp_file_mtime))" -gt "$update_interval" ]]; then 
+    if [[ "$((epoch-timestamp_file_mtime))" -gt "$update_interval" ]]; then
         export update_needed=y
     else
         export update_needed=n
@@ -39,22 +39,15 @@ if [[ "$os" == "centos" ]]; then
         if [[ "$update_needed" == "y" ]]; then
             # forced true as the --assumeno option
             # always returns exit code 1
-            yum updateinfo list security --assumeno &> /dev/null || true
+            yum upgrade --assumeno &> /dev/null || true
             touch $timestamp_file
         fi
 
-        yum_output=$(yum updateinfo list security --cacheonly && rc=$? || rc=$?; echo "rc=$rc" > $tmpfile)
-        source $tmpfile
-        rm $tmpfile
+        yum_output=$(yum updateinfo list security | wc -l)
 
-        if [[ "$rc" == "0" ]]; then
-            pkg_to_update="0"
         fi
 
-         if [[ "$rc" == "100" ]]; then
-            pkg_to_update=$(echo "$yum_output" | egrep -v '^(Load| \*|$)' | wc -l)
-        fi
-    fi
+          pkg_to_update=$(echo "$yum_output")
 }
 
 
@@ -65,3 +58,4 @@ pkg_to_update=""
 _check_OS_upgrades
 
 echo "$pkg_to_update" > $outfile
+
