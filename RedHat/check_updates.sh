@@ -42,11 +42,11 @@ if [[ "$os" == "centos" ]]; then
         if [[ "$update_needed" == "y" ]]; then
             # forced true as the --assumeno option
             # always returns exit code 1
-            yum updateinfo list security all --assumeno &> /dev/null || true
+            yum updateinfo list security --assumeno &> /dev/null || true
             touch $timestamp_file
         fi
 
-        yum_output=$(yum updateinfo list security all --cacheonly && rc=$? || rc=$?; echo "rc=$rc" > $tmpfile)
+        yum_output=$(yum updateinfo list security --cacheonly && rc=$? || rc=$?; echo "rc=$rc" > $tmpfile)
         source $tmpfile
         rm $tmpfile
 
