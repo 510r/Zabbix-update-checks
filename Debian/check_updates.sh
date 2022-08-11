@@ -30,11 +30,11 @@ function _check_last_update {
 function _check_OS_upgrades {
     if [[ "$os" == "debian" ]]; then 
         if [[ "$update_needed" == "y" ]]; then
-            apt-get upgrade -s | grep -i security
+            apt update &>/dev/null
             touch $timestamp_file
         fi
 
-        pkg_to_update=$((apt-get upgrade --simulate 2>&1 | wc -l) || true)
+        pkg_to_update=$((apt-get upgrade -s | grep -i security | wc -l) || true)
     fi
 
 }
