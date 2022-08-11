@@ -38,7 +38,7 @@ yum install wget
 ##
 --download script to created folder 
 
-wget "appropriate version .sh"
+wget https://github.com/510r/Zabbix-update-checks/raw/main/RedHat/check_updates.sh
 
 ##
 --create a script to run daily
