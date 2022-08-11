@@ -45,7 +45,7 @@ wget https://github.com/510r/Zabbix-update-checks/raw/main/RedHat/check_updates.
 
 cat /etc/cron.daily/zabbix_check_pending_updates
 
-#!/bin/sh
+#!/bin/bash
 bash "/opt/zabbix_scripts/check_updates.sh"
 
 --mark it as executable
@@ -55,7 +55,7 @@ chmod +x /etc/cron.daily/zabbix_check_pending_updates
 ##
 --check the script working
 
-sh /opt/zabbix_scripts/check_updates.sh
+bash /opt/zabbix_scripts/check_updates.sh
 
 zabbix_agentd -p | grep os.updates.pending   
 
