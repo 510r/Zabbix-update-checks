@@ -43,7 +43,7 @@ if [[ "$os" == "centos" ]]; then
             touch $timestamp_file
         fi
 
-        yum_output=$(yum updateinfo list security | wc -l)
+        yum_output=$(yum --security list updates | wc -l)
 
         fi
 
